@@ -23,7 +23,17 @@ function findSummation(n) {
 
 // Function: uppercaseFirstandLast
 function uppercaseFirstandLast(str) {
-    return str.substring(0,1).toUpperCase()+str.substring(1,str.length-1)+str.substring(str.length-1).toUpperCase()
+    str = str.trim();
+    if (str.length === 0) {
+        return "";  // Return an empty string if there are no characters
+    }
+    if (str.length === 1) {
+        return str.toUpperCase();  // If there's only one character, capitalize it
+    }
+    // Capitalize the first and last characters of the trimmed string
+    return str.substring(0, 1).toUpperCase() + 
+           str.substring(1, str.length - 1) + 
+           str.substring(str.length - 1).toUpperCase();
 }
 
 // Function: findAverageAndMedian
