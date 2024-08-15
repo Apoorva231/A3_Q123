@@ -14,19 +14,16 @@ app.get('/', (req, res) => {
 });
 
 // Function: findSummation
-function findSummation(n = 1) {
-    if (typeof n !== 'number' || n <= 0) return false;
+function findSummation(n) {
+    if (isNaN (n) || n <= 0) {
+        return false;
+    }
     return (n * (n + 1)) / 2;
 }
 
 // Function: uppercaseFirstandLast
 function uppercaseFirstandLast(str) {
-    return str.split(' ').map(word => {
-        if (word.length > 1) {
-            return word[0].toUpperCase() + word.slice(1, -1) + word[word.length - 1].toUpperCase();
-        }
-        return word.toUpperCase();
-    }).join(' ');
+    return str.substring(0,1).toUpperCase()+str.substring(1,str.length-1)+str.substring(str.length-1).toUpperCase()
 }
 
 // Function: findAverageAndMedian
@@ -91,15 +88,16 @@ app.get('/numOfVisits', (req, res) => {
 
 // Exercise 3: Phone number validation
 app.post('/validatePhoneNumber', (req, res) => {
+    const name= req.body.phoneName;
     const phoneNumber = req.body.phoneNumber;
     const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
     if (phoneRegex.test(phoneNumber)) {
-        res.send('The phone number is correct.');
+        res.send(`Hello ${name}, the phone number ${phoneNumber} is in the correct format.`);
     } else {
-        res.send('The phone number is incorrect.');
+        res.send(`Hello ${name}, the phone number ${phoneNumber} is in the incorrect format.`);
     }
 });
 
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+    console.log('Server is running on port 3000!!');
 });
